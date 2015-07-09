@@ -27,8 +27,10 @@ class AjaxController extends AppController {
         $maxPrice = $this->request->query['max'];
 
         //距離(時間)検索追加
-        $this->log($distance);
-        $search = array_merge($search, array('distance BETWEEN 0 AND ? ' => array($distance)));
+        if($distance != 9999){
+            $this->log('distance ' .$distance);
+            $search = array_merge($search, array('distance BETWEEN 0 AND ? ' => array($distance)));
+        }
 
         //カテゴリ検索追加
         if($category != 9999){
