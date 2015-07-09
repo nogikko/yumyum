@@ -1,45 +1,45 @@
 # User specific & automatically generated files #
 #################################################
 
-/lib/Cake/Console/Templates/skel/tmp/
+/cakephp/lib/Cake/Console/Templates/skel/tmp/
 /dist
 /tags
 *.mo
 
 # Cake TMP Dirs
-/yumyum/tmp/*
-!/yumyum/tmp/
+/cakephp/yumyum/tmp/*
+!/cakephp/yumyum/tmp/
  
 /yumyum/tmp/cache/*
-!/yumyum/tmp/cache/
-!/yumyum/tmp/cache/empty
+!/cakephp/yumyum/tmp/cache/
+!/cakephp/yumyum/tmp/cache/empty
  
-/yumyum/tmp/cache/models/*
-!/yumyum/tmp/cache/models/
-!/yumyum/tmp/cache/models/empty
+/cakephp/yumyum/tmp/cache/models/*
+!/cakephp/yumyum/tmp/cache/models/
+!/cakephp/yumyum/tmp/cache/models/empty
  
-/yumyum/tmp/cache/persistent/*
-!/yumyum/tmp/cache/persistent/
-!/yumyum/tmp/cache/persistent/empty
+/cakephp/yumyum/tmp/cache/persistent/*
+!/cakephp/yumyum/tmp/cache/persistent/
+!/cakephp/yumyum/tmp/cache/persistent/empty
  
-/yumyum/tmp/cache/views/*
-!/yumyum/tmp/cache/views/
-!/yumyum/tmp/cache/views/empty
+/cakephp/yumyum/tmp/cache/views/*
+!/cakephp/yumyum/tmp/cache/views/
+!/cakephp/yumyum/tmp/cache/views/empty
  
-/yumyum/tmp/logs/*
-!/yumyum/tmp/logs/
-!/yumyum/tmp/logs/empty
+/cakephp/yumyum/tmp/logs/*
+!/cakephp/yumyum/tmp/logs/
+!/cakephp/yumyum/tmp/logs/empty
  
-/yumyum/tmp/sessions/*
-!/yumyum/tmp/sessions/
-!/yumyum/tmp/sessions/empty
+/cakephp/yumyum/tmp/sessions/*
+!/cakephp/yumyum/tmp/sessions/
+!/cakephp/yumyum/tmp/sessions/empty
  
-/yumyum/tmp/tests/*
-!/yumyum/tmp/tests/
-!/yumyum/tmp/tests/empty
+/cakephp/yumyum/tmp/tests/*
+!/cakephp/yumyum/tmp/tests/
+!/cakephp/yumyum/tmp/tests/empty
 
-/yumyum/webroot/upload/*
-!/yumyum/tmp/upload/
+/cakephp/yumyum/webroot/upload/*
+!/cakephp/yumyum/tmp/upload/
 
 # IDE and editor specific files #
 #################################
