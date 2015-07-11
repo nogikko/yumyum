@@ -9,6 +9,7 @@ App::uses('AppModel', 'Model');
 
 class Restaurant extends AppModel {
     //public $name = "LunchData";
+
     public $useTable = 'restaurant_tb';
 
     //var $name = 'Restaurant';

@@ -141,7 +141,7 @@
                     <input type="text" id="uv" class="uploadValue" disabled />
             </div>
 
-            <input type="button" onclick="checkForm(this.form);" value="お店を登録する">
+            <input type="submit" onsubmit="checkForm(this.form);" value="お店を登録する">
             <input type="hidden" name="data[Restaurant][lat]" value="">
             <input type="hidden" name="data[Restaurant][lng]" value="">
         </div>

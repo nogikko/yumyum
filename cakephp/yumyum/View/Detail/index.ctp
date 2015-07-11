@@ -40,8 +40,6 @@ $(function(){
   });
 });
 
-
-
 </script>
 </head>
 <body>
@@ -88,7 +86,7 @@ $(function(){
         <button class="went off"><i class="fa fa-flag"></i> ココ行ったよ！</button>
       </div>
       <div class="evaluation_bt">
-        <button class="review" onclick="location.href='/review/'"><i class="fa fa-star-o"></i> レビューを書く</button>
+        <button class="review" onclick="location.href='/review?id=<?=$data['Restaurant']['restaurant_id']?>'"><i class="fa fa-star-o"></i> レビューを書く</button>
       </div>
         <?php endif ?>
     </div><!-- left END -->
@@ -142,7 +140,18 @@ $(function(){
       <div class="comm_review--head"><i class="fa fa-comments-o"></i> みんなのレビュー</div>
 
       <div class="comm_review--area">
-        <div class="comm_review--list">
+          <?php foreach($comments as $comment):?>
+          <div class="comm_review--list">
+              <img class="comm_review--list__user" src="img/aze.png" alt="あぜさん" />
+              <div class="comm_review--list__comm">
+                  <p class="data">畔上 剛<small>@GMOクラウド</small><span> <?php $date = new DateTime($comment['Comment']['created']); echo $date->format('Y/m/d H:i'); ?></span></p>
+                  <p class="text">
+                      <?=$comment['Comment']['message']?>
+                  </p>
+              </div>
+          </div>
+          <?php endforeach;?>
+       <!-- <div class="comm_review--list">
           <img class="comm_review--list__user" src="img/aze.png" alt="あぜさん" />
           <div class="comm_review--list__comm">
             <p class="data">畔上 剛<small>@GMOクラウド</small><span>2015/07/07 13:23</span></p>
@@ -180,6 +189,7 @@ $(function(){
             </p>
           </div>
         </div>
+          -->
       </div>
     </div>
     </div><!-- right END -->

@@ -11,5 +11,6 @@ class User extends AppModel {
 
     public $name = 'User';
     public $useTable = 'gmo_user_tb';
+    public $primaryKey = 'gmo_id';
 
 }

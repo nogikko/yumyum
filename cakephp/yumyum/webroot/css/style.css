@@ -627,7 +627,7 @@ header .main_menu ul li a i {
   overflow: auto;
 }
 
-.main_contener .detail_area .left_column .evaluation_bt .favo, .main_contener .detail_area .left_column .evaluation_bt .invites, .main_contener .detail_area .left_column .evaluation_bt .went, .main_contener .detail_area .left_column .evaluation_bt .review, .main_contener .logo_area .login_area input[type="submit"], .main_contener .edition_area .sd_link, .main_contener .shop_regist--form input[type="button"] {
+.main_contener .detail_area .left_column .evaluation_bt .favo, .main_contener .detail_area .left_column .evaluation_bt .invites, .main_contener .detail_area .left_column .evaluation_bt .went, .main_contener .detail_area .left_column .evaluation_bt .review, .main_contener .logo_area .login_area input[type="submit"], .main_contener .edition_area .sd_link, .main_contener .shop_regist--form input[type="submit"] {
   display: block;
   width: 200px;
   padding: 10px;
@@ -643,11 +643,11 @@ header .main_menu ul li a i {
   cursor: pointer;
   outline: none;
 }
-.main_contener .detail_area .left_column .evaluation_bt .favo:active, .main_contener .detail_area .left_column .evaluation_bt .invites:active, .main_contener .detail_area .left_column .evaluation_bt .went:active, .main_contener .detail_area .left_column .evaluation_bt .review:active, .main_contener .logo_area .login_area input[type="submit"]:active, .main_contener .edition_area .sd_link:active, .main_contener .shop_regist--form input[type="button"]:active {
+.main_contener .detail_area .left_column .evaluation_bt .favo:active, .main_contener .detail_area .left_column .evaluation_bt .invites:active, .main_contener .detail_area .left_column .evaluation_bt .went:active, .main_contener .detail_area .left_column .evaluation_bt .review:active, .main_contener .logo_area .login_area input[type="submit"]:active, .main_contener .edition_area .sd_link:active, .main_contener .shop_regist--form input[type="submit"]:active {
   top: 5px;
   box-shadow: none;
 }
-.main_contener .detail_area .left_column .evaluation_bt .favo:focus, .main_contener .detail_area .left_column .evaluation_bt .invites:focus, .main_contener .detail_area .left_column .evaluation_bt .went:focus, .main_contener .detail_area .left_column .evaluation_bt .review:focus, .main_contener .logo_area .login_area input[type="submit"]:focus, .main_contener .edition_area .sd_link:focus, .main_contener .shop_regist--form input[type="button"]:focus {
+.main_contener .detail_area .left_column .evaluation_bt .favo:focus, .main_contener .detail_area .left_column .evaluation_bt .invites:focus, .main_contener .detail_area .left_column .evaluation_bt .went:focus, .main_contener .detail_area .left_column .evaluation_bt .review:focus, .main_contener .logo_area .login_area input[type="submit"]:focus, .main_contener .edition_area .sd_link:focus, .main_contener .shop_regist--form input[type="submit"]:focus {
   outline: none;
 }
 
@@ -1002,7 +1002,7 @@ header .main_menu ul li a i {
   padding: 3px;
   color: #ffffff;
 }
-.main_contener .shop_regist--form input[type="button"] {
+.main_contener .shop_regist--form input[type="submit"] {
   position: relative;
   width: 320px;
   margin: 80px auto 0px;

@@ -16,11 +16,20 @@ class DetailController extends AppController {
         $id = $this->request->query['id'];
         $this->log('id: '.$this->request->query['id']);
         $this->loadModel('Restaurant');
+        $this->loadModel('Comment');
 
-        $params = array('conditions' => array ('restaurant_id' => $id));
-        $data = $this->Restaurant->find('first',$params);
-       // print_r($data);
+
+        $data = $this->Restaurant->find('first', array('conditions' => array ('restaurant_id' => $id)));
+
+
+
+        $comments = $this->Comment->find('all',array('conditions' => array ('restaurant_id' => $id),
+            'order' => array('Comment.created desc')));
+
+        //print_r($data2);
+
         $this->set("data", $data);
+        $this->set("comments", $comments);
 
     }
 
