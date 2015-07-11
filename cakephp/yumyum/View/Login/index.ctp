@@ -9,18 +9,12 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <title>Yum Yum | byGMO</title>
 <link href='http://fonts.googleapis.com/css?family=Amatic+SC' rel='stylesheet' type='text/css'>
-<?php echo $this->Html->css('style.css'); ?>
+    <?php echo $this->Html->css('style.css'); ?>
 <?php echo $this->Html->css('animate.css'); ?>
 <?php echo $this->Html->css('hover.css'); ?>
 <link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-<script>
-<?php foreach($datas as $data):?>
-marker = addMarker(<?php echo $data['gmo_user']['gmo_id']?>,<?php echo $data['gmo_user']['name']?>,<?php echo $data['gmo_user']['pass']?>);
-setInfoWindow(marker,"<?=$data['gmo_user']['gmo_id']?>","<?=$data['gmo_user']['name']?>","<?=$data['gmo_user']['pass']?>");
-<?php endforeach;?>
-</script>
 
 </head>
 <body>
