@@ -55,7 +55,7 @@
 
             <?php foreach($datas as $data):?>
             marker = addMarker(<?php echo $data['Restaurant']['lat']?>, <?php echo $data['Restaurant']['lng']?>, <?php echo $data['Restaurant']['category']?>);
-            setInfoWindow(marker, "<?=$data['Restaurant']['name']?>", "<?=$data['Restaurant']['image_file_name']?>", "<?=$data['Restaurant']['money']?>", "<?=$data['Restaurant']['address']?>", "<?=$data['Restaurant']['phone']?>");
+            setInfoWindow(marker,<?=$data['Restaurant']['restaurant_id']?> ,"<?=$data['Restaurant']['name']?>", "<?=$data['Restaurant']['image_file_name']?>", "<?=$data['Restaurant']['money']?>", "<?=$data['Restaurant']['address']?>", "<?=$data['Restaurant']['phone']?>");
             <?php endforeach;?>
 
 
@@ -113,11 +113,11 @@
 
         }
         var infoWindow;
-        function setInfoWindow(marker, message, imgpath, address, phone, price) {
+        function setInfoWindow(marker,id,message, imgpath, address, phone, price) {
 
             google.maps.event.addListener(marker, 'mouseover', function () {
                 infoWindow = new google.maps.InfoWindow({
-                    content: '<img src="' + imgpath + '" height = "80" width = "80"><br>' + '<a href="detail">' + message + '</a><br>' + phone + '<div>&yen;' + price
+                    content: '<img src="' + imgpath + '" height = "80" width = "80"><br>' + '<a href="detail?id='+id+'">' + message + '</a><br>' + phone + '<div>&yen;' + price
                 })
                 infoWindow.open(map, marker);
 
@@ -171,7 +171,7 @@
                         var restaurant = json.result[index].Restaurant;
                         //alert(restaurant.category);
                         var marker = addMarker(restaurant.lat, restaurant.lng, parseInt(restaurant.category,10));
-                        setInfoWindow(marker, restaurant.name, restaurant.image_file_name, restaurant.money, restaurant.address, restaurant.phone);
+                        setInfoWindow(marker, restaurant.restaurant_id,restaurant.name, restaurant.image_file_name, restaurant.money, restaurant.address, restaurant.phone);
 
                         content += '<div class="shop_list--block__content">' +
                         '<a href="detail"><img src="' + restaurant.image_file_name + '" alt="肉割烹 将泰庵[和牛炙り鉄火丼]" />' +
@@ -222,7 +222,12 @@
             <li>/</li>
             <li><a class="hvr-fade" href="/form/"><i class="fa fa-pencil-square-o"></i>お店を登録</a></li>
             <li>/</li>
-            <li><a class="hvr-fade" href="/login/"><i class="fa fa-power-off"></i>ログイン</a></li>
+            <?php if ($auth->loggedIn()) : ?>
+                <li><a class="hvr-fade" href="/login/logout/"><i class="fa fa-power-off"></i>ログアウト</a></li>
+            <?php else: ?>
+                <li><a class="hvr-fade" href="/login/"><i class="fa fa-power-off"></i>ログイン</a></li>
+            <?php endif ?>
+
         </ul>
     </div>
 </header>

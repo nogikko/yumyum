@@ -48,7 +48,7 @@ class AppController extends Controller {
             )),
 
             //ログインできない表示できないときに表示する
-            'loginAction' => array('controller' => 'top', 'action' => 'index'),
+            'loginAction' => array('controller' => 'login', 'action' => 'index'),
             //ログイン後の移動先
             'loginRedirect' => array('controller' => 'mypage', 'action' => 'index'),
             //ログアウト後の移動先
@@ -61,7 +61,6 @@ class AppController extends Controller {
 
     public function beforeFilter(){//login処理の設定
         $this->Auth->allow('login','add','search','index','edition');//ログインしないで、アクセスできるアクションを登録する
-
-	 $this->set('auth',$this->Auth);
+        $this->set('auth',$this->Auth);
     }
 }

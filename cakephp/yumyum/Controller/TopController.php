@@ -12,7 +12,6 @@ class TopController extends AppController {
 
     public function index() {
         $this->autoLayout = false;
-        // $this->modelClass = null;
         $this->loadModel('Restaurant');
         $datas = $this->Restaurant->find('all');
         $this->set("datas", $datas);

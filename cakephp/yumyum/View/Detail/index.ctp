@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -54,7 +53,11 @@ $(function(){
       <li>/</li>
       <li><a class="hvr-fade" href="/"><i class="fa fa-search"></i>お店を検索</a></li>
       <li>/</li>
-      <li><a class="hvr-fade" href="login"><i class="fa fa-power-off"></i>ログイン</a></li>
+        <?php if ($auth->loggedIn()) : ?>
+            <li><a class="hvr-fade" href="/login/logout/"><i class="fa fa-power-off"></i>ログアウト</a></li>
+        <?php else: ?>
+            <li><a class="hvr-fade" href="/login/"><i class="fa fa-power-off"></i>ログイン</a></li>
+        <?php endif ?>
     </ul>
   </div>
 </header>
@@ -64,13 +67,15 @@ $(function(){
 <p class="detail_area--head">お店の詳細情報</p>
     <div class="left_column">
       <div class="shop_img">
-        <img src="img/img_002.jpg" alt="ヘルシーなおかゆ" />
+        <img src="<?=$data['Restaurant']['image_file_name']?>" alt="ヘルシーなおかゆ" />
       </div>
+
       <div class="evaluation">
         <p><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i><i class="fa fa-star-o"></i></p>
         <span> (3.5)</span>
         <span style="float: right;">レビュー：20件</span>
       </div>
+        <?php if ($auth->loggedIn()) : ?>
       <div class="evaluation_bt">
         <button class="favo off"><i class="fa fa-heart-o"></i> お気に入り</button>
       </div>
@@ -85,24 +90,26 @@ $(function(){
       <div class="evaluation_bt">
         <button class="review" onclick="location.href='/review/'"><i class="fa fa-star-o"></i> レビューを書く</button>
       </div>
+        <?php endif ?>
     </div><!-- left END -->
+
     <div class="right_column">
     <table class="shop_info">
       <caption><i class="fa fa-cutlery"></i> お店の情報</caption>
       <tbody>
           <tr>
             <th>店名</th>
-            <td>ハノイのホイさん</td>
+            <td><?=$data['Restaurant']['name']?></td>
           </tr>
 
           <tr>
             <th>住所</th>
-            <td>〒150-0042  東京都渋谷区宇田川町16-13 スペイン坂内田ビル2F</td>
+            <td><?=$data['Restaurant']['address']?></td>
           </tr>
 
           <tr>
             <th>電話番号</th>
-            <td>050-5798-7175</td>
+              <td><?=$data['Restaurant']['phone']?></td>
           </tr>
 
           <tr>
@@ -117,7 +124,7 @@ $(function(){
 
           <tr>
             <th>平均予算</th>
-            <td>850円</td>
+            <td><?=$data['Restaurant']['money']?>円</td>
           </tr>
 
           <tr>

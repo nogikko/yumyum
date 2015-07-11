@@ -42,6 +42,7 @@
       <p class="user_id">PASSWORD:
         <input type="text" name="data[User][pass]" placeholder="パスワードを入力してください" />
       </p>
+        <div style="color: #ff0000"><?php echo $this->Session->flash(); ?></div>
 <input type="submit" value="ログイン">
     </div>
 </form>
