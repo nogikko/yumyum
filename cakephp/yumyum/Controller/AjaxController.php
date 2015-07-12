@@ -65,8 +65,26 @@ class AjaxController extends AppController {
         // return $this->params['url']['checkbox1'];
     }
 
-    public function search2() {
+    public function checkfav() {
         $this->autoRender = false;
+        $this->loadModel('Favorite');
+        $data = array('Favorite' => array('gmo_id' => $this->Auth->user('gmo_id'), 'restaurant_id' => $this->data['restaurant_id']));
+       //$this->log("aaaaa". $this->data['restaurant_id']);
+        if ($this->Favorite->save($data)) {
+            echo "成功";
+        }else{
+            echo "失敗";
+        }
+
+    }
+
+    public function deletefav() {
+        $this->autoRender = false;
+        $this->loadModel('Favorite');
+        $conditions = array('gmo_id' => $this->Auth->user('gmo_id'),'restaurant_id ' => $this->data['restaurant_id']);
+        $this->Favorite->deleteAll($conditions);
+        //$data = array('Favorite' => array('gmo_id' => $this->Auth->user('gmo_id'), 'restaurant_id' => $this->data['restaurant_id']));
+        $this->log("aaaaa". $this->data['restaurant_id']);
         echo "ssss";
     }
 

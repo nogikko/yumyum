@@ -60,7 +60,8 @@ class AppController extends Controller {
     );
 
     public function beforeFilter(){//login処理の設定
-        $this->Auth->allow('login','add','search','index','edition');//ログインしないで、アクセスできるアクションを登録する
+
+        $this->Auth->allow('index','search','checkfav','login','add','edition','deletefav');
         $this->set('auth',$this->Auth);
     }
 }

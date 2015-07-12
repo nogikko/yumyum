@@ -1,33 +1,41 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Language" content="ja">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="format-detection" content="telephone=no">
-<meta name="copyright" content="(C) GTB Inc. All Rights Reserved." />
-<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
-<title>Yum Yum | byGMO</title>
-<link href='http://fonts.googleapis.com/css?family=Amatic+SC' rel='stylesheet' type='text/css'>
-<?php echo $this->Html->css('style.css'); ?>
-<?php echo $this->Html->css('animate.css'); ?>
-<?php echo $this->Html->css('hover.css'); ?>
-<link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <meta http-equiv="Content-Language" content="ja">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="format-detection" content="telephone=no">
+    <meta name="copyright" content="(C) GTB Inc. All Rights Reserved." />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>Yum Yum | byGMO</title>
+    <link href='http://fonts.googleapis.com/css?family=Amatic+SC' rel='stylesheet' type='text/css'>
+    <?php echo $this->Html->css('style.css'); ?>
+    <?php echo $this->Html->css('animate.css'); ?>
+    <?php echo $this->Html->css('hover.css'); ?>
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 <script>
 $(function(){
-  var favo_flg = true;
+    var favo_flg;
+    <?php if ($isFav) : ?>
+       favo_flg = true;
+    <?php else: ?>
+      favo_flg = false;
+    <?php endif ?>
+
   $(".favo").click(function() {
     if (favo_flg) {
+        deleteFavAjax();
       $(this).removeClass('off');
       favo_flg = false;//---trueの時はfalseに
     }else{
+        checkFavAjax();
       $(this).addClass('off');
       favo_flg = true;//---falseの時はtrueに
     }
   });
 
-  var went_flg = true;
+  var went_flg = false;
   $(".went").click(function() {
     if (went_flg) {
       $(this).removeClass('off');
@@ -39,6 +47,50 @@ $(function(){
 
   });
 });
+
+function checkFavAjax() {
+
+    $.ajax({
+        type: "post",
+        url: "/ajax/checkfav/",
+        data: {
+            "restaurant_id": <?=$data['Restaurant']['restaurant_id']?>
+        },
+        dataType: 'text',
+        success: function (json) {
+
+            // alert(JSON.stringify(json));
+            // alert(JSON.stringify(json.result));
+            alert('登録成功' + json);
+
+        },
+        error: function (e) {
+            alert('通信失敗' + e);
+        }
+    });
+}
+
+function deleteFavAjax() {
+
+    $.ajax({
+        type: "post",
+        url: "/ajax/deletefav/",
+        data: {
+            "restaurant_id": <?=$data['Restaurant']['restaurant_id']?>
+        },
+        dataType: 'text',
+        success: function (json) {
+
+            // alert(JSON.stringify(json));
+            // alert(JSON.stringify(json.result));
+            alert('削除成功' + json);
+
+        },
+        error: function (e) {
+            alert('通信失敗' + e);
+        }
+    });
+}
 
 </script>
 </head>
@@ -75,7 +127,11 @@ $(function(){
       </div>
         <?php if ($auth->loggedIn()) : ?>
       <div class="evaluation_bt">
-        <button class="favo off"><i class="fa fa-heart-o"></i> お気に入り</button>
+            <?php if ($isFav) : ?>
+              <button class="favo off"><i class="fa fa-heart-o"></i> お気に入り</button>
+            <?php else: ?>
+                <button class="favo "><i class="fa fa-heart-o"></i> お気に入り</button>
+            <?php endif ?>
       </div>
       <div class="evaluation_bt">
 	<input type='hidden' id='hidden_data' value='送信したい情報をここに記載'>
@@ -83,7 +139,7 @@ $(function(){
       </div>
     <div style="clear: both;"></div>
       <div class="evaluation_bt">
-        <button class="went off"><i class="fa fa-flag"></i> ココ行ったよ！</button>
+        <button class="went "><i class="fa fa-flag"></i> ココ行ったよ！</button>
       </div>
       <div class="evaluation_bt">
         <button class="review" onclick="location.href='/review?id=<?=$data['Restaurant']['restaurant_id']?>'"><i class="fa fa-star-o"></i> レビューを書く</button>

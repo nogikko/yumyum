@@ -17,6 +17,7 @@ class DetailController extends AppController {
         $this->log('id: '.$this->request->query['id']);
         $this->loadModel('Restaurant');
         $this->loadModel('Comment');
+        $this->loadModel('Favorite');
 
 
         $data = $this->Restaurant->find('first', array('conditions' => array ('restaurant_id' => $id)));
@@ -25,6 +26,16 @@ class DetailController extends AppController {
 
         $comments = $this->Comment->find('all',array('conditions' => array ('restaurant_id' => $id),
             'order' => array('Comment.created desc')));
+
+        $isFav = $this->Favorite->find('first',array('conditions' => array ('restaurant_id' => $id,'gmo_id' => $this->Auth->user('gmo_id'))));
+
+        if($isFav){
+          //  $this->log('isFav: '.$isFav);
+            $this->set("isFav", true);
+        }else{
+          //  $this->log('なし');
+            $this->set("isFav", false);
+        }
 
         //print_r($data2);
 

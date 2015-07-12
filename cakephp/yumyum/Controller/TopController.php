@@ -17,9 +17,9 @@ class TopController extends AppController {
         $this->set("datas", $datas);
     }
 
-    public $name = "Top";
-    public $components = array(
-        'Session');
+    //public $name = "Top";
+    /*public $components = array(
+        'Session');*/
 
    public function login(){
        $this->autoRender = false;

@@ -18,7 +18,7 @@ class MypageController extends AppController{
         $this->loadModel('Restaurant');
 
 
-        $user_number = 2;
+        $user_number = 528;
 
         //最近いった店検索
         $options = array(

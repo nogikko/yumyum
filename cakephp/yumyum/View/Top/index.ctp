@@ -55,7 +55,7 @@
 
             <?php foreach($datas as $data):?>
             marker = addMarker(<?php echo $data['Restaurant']['lat']?>, <?php echo $data['Restaurant']['lng']?>, <?php echo $data['Restaurant']['category']?>);
-            setInfoWindow(marker,<?=$data['Restaurant']['restaurant_id']?> ,"<?=$data['Restaurant']['name']?>", "<?=$data['Restaurant']['image_file_name']?>", "<?=$data['Restaurant']['money']?>", "<?=$data['Restaurant']['address']?>", "<?=$data['Restaurant']['phone']?>");
+            setInfoWindow(marker,<?=$data['Restaurant']['restaurant_id']?> ,"<?=$data['Restaurant']['name']?>", "<?=$data['Restaurant']['image_file_name']?>", "<?=$data['Restaurant']['address']?>", "<?=$data['Restaurant']['phone']?>","<?=$data['Restaurant']['money']?>");
             <?php endforeach;?>
 
 
@@ -113,18 +113,27 @@
 
         }
         var infoWindow;
-        function setInfoWindow(marker,id,message, imgpath, address, phone, price) {
+        var isInfoWindowFlg = false;
+        function setInfoWindow(marker,id,name, imgpath, address, phone, money) {
 
             google.maps.event.addListener(marker, 'mouseover', function () {
                 infoWindow = new google.maps.InfoWindow({
-                    content: '<img src="' + imgpath + '" height = "80" width = "80"><br>' + '<a href="detail?id='+id+'">' + message + '</a><br>' + phone + '<div>&yen;' + price
+                    maxWidth: 500,
+                    content: '<div id="infowindow"><img src="' + imgpath + '" height = "70" width = "70" align="left">' + '<a href="detail?id='+id+'">店名：' + name +'</a><br>住所：'+address + '<br>電話番号：'+phone + '<br>予算：￥' + money+'</div>'
                 })
-                infoWindow.open(map, marker);
+
+                if(!isInfoWindowFlg) {
+                    infoWindow.open(map, marker);
+                    isInfoWindowFlg = true;
+                }
 
                 google.maps.event.addListener(infoWindow, 'closeclick', function () {
                     //閉じた場合の処理を記載
                     isInfoWindowFlg = false;
+                    infoWindow.close();
                 });
+
+
             });
 
         }
@@ -171,7 +180,7 @@
                         var restaurant = json.result[index].Restaurant;
                         //alert(restaurant.category);
                         var marker = addMarker(restaurant.lat, restaurant.lng, parseInt(restaurant.category,10));
-                        setInfoWindow(marker, restaurant.restaurant_id,restaurant.name, restaurant.image_file_name, restaurant.money, restaurant.address, restaurant.phone);
+                        setInfoWindow(marker, restaurant.restaurant_id,restaurant.name, restaurant.image_file_name, restaurant.address, restaurant.phone,restaurant.money);
 
                         content += '<div class="shop_list--block__content">' +
                         '<a href="detail"><img src="' + restaurant.image_file_name + '" alt="肉割烹 将泰庵[和牛炙り鉄火丼]" />' +
